@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyparser = require ("body-parser");
 var metier = require ('./MetierEvenement');
+var Metierpers = require("./MetierPersonne");
 var app = express();
 
 
@@ -58,6 +59,23 @@ app.delete('/api/evenements/:id', function(req, res){
     if ((typeof objs === "undefined") || (typeof objs === {}))
         res.status(404 ).json({}); //code 400 car erreur coté client
     else res.status(201).json(objs);
+})
+
+
+app.post("/api/personnes", function (req, res){
+    var pers= req.body;
+    var persres = Metierpers.ajouterPersonnes(pers);
+
+    if ((typeof persres === "undefined") || (persres === {}))
+    {
+        res.status(400 ); //code 400 car erreur coté client
+    }
+    else res.status(201).json(persres);
+
+})
+
+app.get('/api/personnes', function(req,res){
+    res.status(200).json(Metierpers.listerPersonnes());
 })
 
 app.listen(3000, function(){

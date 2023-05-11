@@ -16,6 +16,7 @@ function Evenement(id,acronyme,nom_event,lieu_event,description,date_ouverture, 
     this.nombre_max=nombre_max;
 }
 
+
 // Constructeur avec structure
 function Evenement(evenement) {
     this.id = evenement.id;

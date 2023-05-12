@@ -3,7 +3,13 @@
 // liste des évenements
 var liste = [];
 var id = 0;
-
+function Personnes(nom, prenom, mail,telephone,idEvent){
+    this.nom=nom;
+    this.prenom=prenom;
+    this.mail=mail;
+    this.telephone=telephone;
+    this.idEvent=idEvent;
+}
 function Personnes(nom, prenom, mail,telephone,idEvent){
     this.nom=nom;
     this.prenom=prenom;
@@ -24,16 +30,49 @@ function Personnes(personnes){
 //quand une personne s'inscrit à un event si cette personne existe déjà on rajoute dans la list l'id de l'event
 //sinon on le crée et on lui ajoute le premier id event
 
-var ajouterPersonnes = function(personnes){
-    liste[id]=new Personnes(personnes);
-    id++;
-    return liste[id-1];
+var estDoublons = function (listeDeNombre, nombre){
+
+    let TabMot = listeDeNombre.split(" ");
+    for (let i = 0; i < TabMot.length; i++){
+
+        if (TabMot[i]===nombre)
+        {
+            return true;
+        }
+    }
+    return false;
+
 }
 
-var listePersonnes=function(){
-    return Object.values(liste);
-}
+var ajouterPersonnes = function(personnes) {
+    //parcourir list + comparer email + if == recup index et modif cette personne
+    personneDejaAjt = false;
 
-exports.ajouterPersonnes=ajouterPersonnes;
-exports.listerPersonnes=listePersonnes;
+
+    for (let i = 0; i < liste.length; i++) {
+        if (liste[i].mail === personnes.mail) {
+            var dejaInscrit = estDoublons(liste[i].idEvent, personnes.idEvent);
+            if (dejaInscrit == false) {
+                liste[i].idEvent = liste[i].idEvent + " " + personnes.idEvent;
+            }
+                personneDejaAjt = true;
+            }
+        }
+
+        if (personneDejaAjt === false) {
+
+            liste[id] = new Personnes(personnes);
+            id++;
+        }
+        personneDejaAjt = false;
+
+        return liste[id - 1];
+    }
+
+    var listePersonnes = function () {
+        return Object.values(liste);
+    }
+
+    exports.ajouterPersonnes = ajouterPersonnes;
+    exports.listerPersonnes = listePersonnes;
 

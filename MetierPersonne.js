@@ -48,7 +48,6 @@ var ajouterPersonnes = function(personnes) {
     //parcourir list + comparer email + if == recup index et modif cette personne
     personneDejaAjt = false;
 
-
     for (let i = 0; i < liste.length; i++) {
         if (liste[i].mail === personnes.mail) {
             var dejaInscrit = estDoublons(liste[i].idEvent, personnes.idEvent);

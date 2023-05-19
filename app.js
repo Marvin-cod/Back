@@ -89,6 +89,18 @@ app.get('/api/personnes/:id', function (req, res){
         res.status(404 ).json({}); //code 400 car erreur coté client
     else res.status(201).json(obj);
 })
+app.delete('/api/personnes/:adressemail/:id2', function(req, res){
+    //deux params ( id2 = id event)
+    //recup param
+    const id1 = req.params.adressemail;
+    const id2 = req.params.id2;
+    //coté metier
+    var objs = Metierpers.supprimerPersonnesEvent(id1,id2)//nom focntion
+    //on forge res
+    if ((typeof objs === "undefined") || (typeof objs === {}))
+        res.status(404 ).json({}); //code 400 car erreur coté client
+    else res.status(201).json(objs);
+})
 
 app.listen(3000, function(){
     console.log(('Server running...'))

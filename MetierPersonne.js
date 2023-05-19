@@ -45,6 +45,8 @@ var ajouterPersonnes = function(personnes) {
     personneDejaAjt = false;
 
     for (let i = 0; i < liste.length; i++) {
+        //[{"nom":"t","prenom":"Nico","mail":"ni@gmail.com","idEvent":"1"},{"nom":"test","prenom":"test","mail":"test","telephone":"test","idEvent":"1 2"},{"nom":"f","prenom":"f","mail":"f","telephone":"f","idEvent":"2"}]
+        //[{"nom":"t","prenom":"Nico","mail":"ni@gmail.com","idEvent":"1"},{"nom":"test","prenom":"test","mail":"test","telephone":"test","idEvent":"1 2"},{"nom":"f","prenom":"f","mail":"f","telephone":"f","idEvent":"2"}]
         if (liste[i].mail === personnes.mail) {
             var dejaInscrit = estDoublons(liste[i].idEvent, personnes.idEvent);
             if (dejaInscrit == false) {
@@ -78,6 +80,27 @@ var ajouterPersonnes = function(personnes) {
     }
     return listeParticipantsEvent;
     }
+    exports.supprimerPersonnesEvent = function(adresseMail, id2){//deux id (id1 = id personnes, id2 = id event)
+    //supprimer un event à notre personne
+        //convertir id2 int en string
+        var id2String = String(id2);
+        for (let pers = 0; pers < liste.length; pers++){
+            if (liste[pers].mail === adresseMail){
+                if(liste[pers].idEvent.split(' ').length === 1){
+                    liste.splice(pers,1);
+                    return liste;
+                }
+                var table = liste[pers].idEvent.split(" ");
+                var index = table.indexOf(id2String);
+                table.splice(index, 1);
+                var ideventtemp = table.join(' ');
+                liste[pers].idEvent=ideventtemp;
+            }
+        }
+        return liste;
+}
+
+
 
     exports.ajouterPersonnes = ajouterPersonnes;
     exports.listerPersonnes = listePersonnes;

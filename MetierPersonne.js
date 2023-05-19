@@ -60,7 +60,6 @@ var ajouterPersonnes = function(personnes) {
             id++;
         }
         personneDejaAjt = false;
-
         return liste[id - 1];
     }
 

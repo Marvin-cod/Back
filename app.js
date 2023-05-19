@@ -80,7 +80,7 @@ app.get('/api/personnes', function(req,res){
 })
 
 app.get('/api/personnes/:id', function (req, res){
-    // recup les params
+    //recup les params
     var id = req.params.id;
     // coté métier
     var obj = Metierpers.listerPersonsEvent(id);

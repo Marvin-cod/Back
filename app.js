@@ -1,3 +1,4 @@
+
 var express = require('express');
 var bodyparser = require ("body-parser");
 var metier = require ('./MetierEvenement');
@@ -76,6 +77,17 @@ app.post("/api/personnes", function (req, res){
 
 app.get('/api/personnes', function(req,res){
     res.status(200).json(Metierpers.listerPersonnes());
+})
+
+app.get('/api/personnes/:id', function (req, res){
+    // recup les params
+    var id = req.params.id;
+    // coté métier
+    var obj = Metierpers.listerPersonsEvent(id);
+    //forge mle résulatt aux clients
+    if ((typeof obj === "undefined") || (typeof obj === {}))
+        res.status(404 ).json({}); //code 400 car erreur coté client
+    else res.status(201).json(obj);
 })
 
 app.listen(3000, function(){

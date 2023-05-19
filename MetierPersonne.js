@@ -1,15 +1,11 @@
+
 // gestion des personnes inscrites aux évenements
 
 // liste des évenements
 var liste = [];
 var id = 0;
-function Personnes(nom, prenom, mail,telephone,idEvent){
-    this.nom=nom;
-    this.prenom=prenom;
-    this.mail=mail;
-    this.telephone=telephone;
-    this.idEvent=idEvent;
-}
+var listeParticipantsEvent = [];
+
 function Personnes(nom, prenom, mail,telephone,idEvent){
     this.nom=nom;
     this.prenom=prenom;
@@ -70,6 +66,18 @@ var ajouterPersonnes = function(personnes) {
 
     var listePersonnes = function () {
         return Object.values(liste);
+    }
+
+    exports.listerPersonsEvent = function(idEvent){
+    listeParticipantsEvent = [];
+    var compt = 0;
+    for (let pers = 0; pers < liste.length; pers++){
+        if (estDoublons(liste[pers].idEvent, idEvent)){
+            listeParticipantsEvent[compt] = liste[pers];
+            compt++;
+        }
+    }
+    return listeParticipantsEvent;
     }
 
     exports.ajouterPersonnes = ajouterPersonnes;

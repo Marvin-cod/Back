@@ -3,19 +3,22 @@
 // liste des évenements
 var liste = [];
 var id = 0;
-function Personnes(nom, prenom, mail,telephone,idEvent){
+function Personnes(nom, prenom, mail,telephone,idEvent,admin){
     this.nom=nom;
     this.prenom=prenom;
     this.mail=mail;
     this.telephone=telephone;
     this.idEvent=idEvent;
+    this.admin = admin;
+
 }
-function Personnes(nom, prenom, mail,telephone,idEvent){
+function Personnes(nom, prenom, mail,telephone,idEvent,admin){
     this.nom=nom;
     this.prenom=prenom;
     this.mail=mail;
     this.telephone=telephone;
     this.idEvent=idEvent;
+    this.admin = admin;
 }
 
 function Personnes(personnes){
@@ -24,6 +27,7 @@ function Personnes(personnes){
     this.mail=personnes.mail;
     this.telephone=personnes.telephone;
     this.idEvent=personnes.idEvent;
+    this.admin = personnes.admin;
 }
 
 //{"nom":"Marvin", "prenom":"bg", "mail":"@gmail.com", "telephone": "010101", "idEvent":"0"}

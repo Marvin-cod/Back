@@ -4,6 +4,7 @@
 var liste = [];
 var id = 0;
 
+
 // Constructeur TOUS membres
 function Evenement(id,acronyme,nom_event,lieu_event,description,date_ouverture, date_cloture,nombre_max) {
     this.id = id;
@@ -33,17 +34,28 @@ function Evenement(evenement) {
 
 // Ajout
 var ajouter = function(evenement) {
-    evenement.id = id;
-    liste[id] = new Evenement(evenement);
-    id++;
-    return liste[id-1];
+    //evenement.id = id;
+    evenement.id = generateId();
+    //liste[id] = new Evenement(evenement);
+    liste.push(new Evenement(evenement));
+    //id++;
+    return evenement;
+}
+function generateId() {
+    return id++;
 }
 
 
 // Get 1 personne
 var getEvenement = function (i) {
-    if (typeof liste[i] === 'undefined') return {};
-    else return liste[i];
+    itemp = Number(i);
+    for (let j =0; j<liste.length;j++){
+        if (liste[j].id === itemp){
+            return liste[j];
+        }
+    }
+    //if (typeof liste[i] === 'undefined') return {};
+    //else return liste[i]; fonctionne sauf quand on supprimer au milieu
 }
 
 // lister les évenements
@@ -52,11 +64,18 @@ var lister = function () {
 }
 
 //suppression
-var supprimer = function(id){
+var supprimer = function(ide){
     //supprimer l'objet dans la liste
-    var suppresion = liste.splice(id, 1); // le premier est l'index le second et combien on en supprime soit 1 seul
-    id--;
-    return suppresion;
+    //var suppresion = liste.splice(id, 1); // le premier est l'index le second et combien on en supprime soit 1 seul
+    //id--;
+    //return suppresion;
+    idtemp = Number(ide);
+        for (let i = 0; i < liste.length; i++) {
+            if (liste[i].id === idtemp) {
+                liste.splice(i, 1);
+                break;
+            }
+        }
 }
 
 exports.ajouter = ajouter;

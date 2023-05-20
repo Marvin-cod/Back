@@ -88,6 +88,7 @@ var ajouterPersonnes = function(personnes) {
             if (liste[pers].mail === adresseMail){
                 if(liste[pers].idEvent.split(' ').length === 1){
                     liste.splice(pers,1);
+                    id--;
                     return liste;
                 }
                 var table = liste[pers].idEvent.split(" ");

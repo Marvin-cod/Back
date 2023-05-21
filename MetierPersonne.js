@@ -107,6 +107,14 @@ var ajouterPersonnes = function(personnes) {
         }
         return liste;
 }
+    exports.connexion = function(user){
+        if (user === 'admin'){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
 
 

@@ -49,8 +49,15 @@ var ajouterPersonnes = function(personnes) {
         //[{"nom":"t","prenom":"Nico","mail":"ni@gmail.com","idEvent":"1"},{"nom":"test","prenom":"test","mail":"test","telephone":"test","idEvent":"1 2"},{"nom":"f","prenom":"f","mail":"f","telephone":"f","idEvent":"2"}]
         if (liste[i].mail === personnes.mail) {
             var dejaInscrit = estDoublons(liste[i].idEvent, personnes.idEvent);
-            if (dejaInscrit == false) {
+            if (dejaInscrit === false) {
+                if (liste[i].idEvent.length === 0){
+                    liste[i].idEvent = personnes.idEvent;
+                }
+                //rajouté le if else
+                    //avant juste le contenu du elseprésent dans le if(===false)
+                else{
                 liste[i].idEvent = liste[i].idEvent + " " + personnes.idEvent;
+                }
             }
                 personneDejaAjt = true;
             }

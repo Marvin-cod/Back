@@ -6,7 +6,7 @@ var id = 0;
 
 
 // Constructeur TOUS membres
-function Evenement(id,acronyme,nom_event,lieu_event,description,date_ouverture, date_cloture,nombre_max) {
+function Evenement(id, acronyme, nom_event, lieu_event, description, date_ouverture, date_cloture, nombre_max) {
     this.id = id;
     this.acronyme = acronyme;
     this.nom_event = nom_event;
@@ -14,10 +14,9 @@ function Evenement(id,acronyme,nom_event,lieu_event,description,date_ouverture, 
     this.description = description;
     this.date_ouverture = date_ouverture;
     this.date_cloture = date_cloture;
-    this.nombre_max=nombre_max;
+    this.nombre_max = nombre_max;
 }
 
-//nico qui arrive pour la deuxieme fois
 // Constructeur avec structure
 function Evenement(evenement) {
     this.id = evenement.id;
@@ -27,13 +26,12 @@ function Evenement(evenement) {
     this.description = evenement.description;
     this.date_ouverture = evenement.date_ouverture;
     this.date_cloture = evenement.date_cloture;
-    this.nombre_max=evenement.nombre_max;
+    this.nombre_max = evenement.nombre_max;
 }
 
 // METHODES METIER
 
-// Ajout
-var ajouter = function(evenement) {
+var ajouter = function (evenement) {
     //evenement.id = id;
     evenement.id = generateId();
     //liste[id] = new Evenement(evenement);
@@ -41,6 +39,7 @@ var ajouter = function(evenement) {
     //id++;
     return evenement;
 }
+
 function generateId() {
     return id++;
 }
@@ -49,13 +48,11 @@ function generateId() {
 // Get 1 personne
 var getEvenement = function (i) {
     itemp = Number(i);
-    for (let j =0; j<liste.length;j++){
-        if (liste[j].id === itemp){
+    for (let j = 0; j < liste.length; j++) {
+        if (liste[j].id === itemp) {
             return liste[j];
         }
     }
-    //if (typeof liste[i] === 'undefined') return {};
-    //else return liste[i]; fonctionne sauf quand on supprimer au milieu
 }
 
 // lister les évenements
@@ -64,18 +61,14 @@ var lister = function () {
 }
 
 //suppression
-var supprimer = function(ide){
-    //supprimer l'objet dans la liste
-    //var suppresion = liste.splice(id, 1); // le premier est l'index le second et combien on en supprime soit 1 seul
-    //id--;
-    //return suppresion;
+var supprimer = function (ide) {
     idtemp = Number(ide);
-        for (let i = 0; i < liste.length; i++) {
-            if (liste[i].id === idtemp) {
-                liste.splice(i, 1);
-                break;
-            }
+    for (let i = 0; i < liste.length; i++) {
+        if (liste[i].id === idtemp) {
+            liste.splice(i, 1);
+            break;
         }
+    }
 }
 
 exports.ajouter = ajouter;
